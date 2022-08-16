@@ -104,19 +104,23 @@ public class Basics {
         switch (a) {
 
             // here case first and second will have commonn output i.e. (case first or case second)
-            case " ":
+            case "1":
                 System.out.println("empty");
+                //break;
             case "2":
                 System.out.println("2");
+                //break;
+            default:
+                System.out.println("default");
             case "3":
                 System.out.println("3");
+                //break;
 //            case "6", "7" :                //possible in java 13
 //                do smtg
 //            case " ":
 //                System.out.println("empty");
 
-            default:
-                System.out.println("default");
+               // no break for last case (default/case)
         }
 
 
@@ -247,13 +251,13 @@ public class Basics {
 
 
     /*
-
-    Memory allocation in java
-
-
-
-
-
+                break          continue
+    for         Y               Y
+    whilw       Y               Y
+    do while    Y               Y
+    switch      Y               N
+    if          N               N
+    if else     N               N
 
 
 

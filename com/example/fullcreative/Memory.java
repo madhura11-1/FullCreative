@@ -1,5 +1,7 @@
 package com.example.fullcreative;
 
+import java.util.Vector;
+
 public class Memory {
 
     /*
@@ -24,7 +26,18 @@ public class Memory {
 
             reasons : using excesssive static variables ( as they remain in program until it ends)
                       when connections are not closed
+                      excessive heap use
 
      */
+
+    public static void main(String[] args){
+
+        Vector v = new Vector(222227);
+        Vector v1 = new Vector(222222347);
+        Vector v2 = new Vector(2222347);
+        System.out.println(v.capacity());
+
+    }
+
 
 }

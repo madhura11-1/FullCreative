@@ -94,6 +94,95 @@ public class OOPs {
 
  */
 
+    public  class  MainGasSwtich extends Exception{
+
+        public MainGasSwtich(String s){
+            super(s);
+        }
+
+    }
+
+    public class GasException extends Exception{
+
+        public GasException(String g){
+
+            //System.out.println(g);
+            super(g);
+
+        }
+
+//        public  Throwable hello(){
+//            Throwable t = new Throwable();
+//            t.getCause();
+//            return t;
+//        }
+    }
+
+    public class Gas{
+
+        boolean gasOn;
+        boolean vessel_on_gas;
+        boolean maingas;
+
+        public Gas(){
+            this.gasOn = false;
+            this.vessel_on_gas = false;
+            this.maingas = false;
+        }
+
+        public void maingason(){
+            maingas = true;
+        }
+
+        public void set_gason(){
+            gasOn = true;
+        }
+        public  void set_vessel_ongas(){
+            vessel_on_gas = true;
+        }
+
+        public void is_cooking() throws MainGasSwtich, GasException {
+
+            if (!maingas) throw new MainGasSwtich("Main gas switch is not on");
+            else {
+                if (!gasOn || !vessel_on_gas) {
+//                try{
+//                throw new GasException("Either gas is not on or Vessel is not placed on gas").hello();}
+//                catch (Throwable t){
+//                    System.out.println(t);
+//                }
+                    throw new GasException("Either gas is not on or Vessel is not placed on gas");
+
+                } else {
+                    System.out.println("Cooking started");
+                }
+            }
+
+        }
+    }
+
+    public static void main(String[] args){
+
+        try{
+        Gas gas = new OOPs().new Gas();
+        gas.maingason();
+        //gas.set_gason();
+        gas.set_vessel_ongas();
+        gas.is_cooking();
+        } catch (Exception m){    //MainGasSWtich | GasEXception m -> cannot do coz belong to same super class so catch the base class exception
+            System.out.println(m);
+        }
+
+
+
+    }
+
+
+
+
+
+
+
     public void exceptionFun0() throws NullPointerException{
 
         String ab = null;
@@ -112,6 +201,11 @@ public class OOPs {
                 if (a.contains("s")) {
                     System.out.println("not null");
                 }
+                try{exceptionFun0();}
+                catch (NullPointerException e){
+                    System.out.println(e.toString() + " 2");
+                }
+
             }
 
         } catch (NullPointerException e) {
@@ -123,22 +217,18 @@ public class OOPs {
 
 //        finally{
 //                //excuted compulsory even if exception occured or not
+                  //closing a file/ connection
 //          }
 
-        try {
-            exceptionFun0();
-        }catch (NullPointerException e){
-            System.out.println(e.toString() + " 2");
-        }
+//        try {
+//            exceptionFun0();
+//        }catch (NullPointerException e){
+//            System.out.println(e.toString() + " 2");
+//        }
 
     }
 
-    public static void main(String[] args){
 
-        OOPs op = new OOPs();
-        op.exceptionFun();
-
-    }
 
 }
 
@@ -166,6 +256,7 @@ public class OOPs {
 
    either catch the exception or pass on to the call stack which might be catched there
 
+    multiple exception catching -> most specific to most general
 
 
 
