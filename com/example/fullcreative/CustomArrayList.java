@@ -25,13 +25,14 @@ public class CustomArrayList<T> implements List<T> {
         //size = default_size;
         flag = 1;
         arr = new Object[default_size];
+        final_size = default_size;
     }
 
     public CustomArrayList(int size){
        // this.size = size;
         if(size > 0){
         this.final_size = size;
-        arr = new Object[this.size];}
+        arr = new Object[this.final_size];}
         else{
             throw new IllegalArgumentException("Size has to be greater than zero");
         }
@@ -43,12 +44,19 @@ public class CustomArrayList<T> implements List<T> {
             final_size = collection.size();
             arr = collection.toArray();
         }
+        else{
+            throw new IllegalArgumentException("Size has to be greater than zero");
+        }
     }
 
 
     @Override
     public int size() {
         return size;
+    }
+
+    public int capacity(){
+        return final_size;
     }
 
     @Override
@@ -248,35 +256,42 @@ public class CustomArrayList<T> implements List<T> {
 
     @Override
     public void add(int i, T t) {            //check if there is space in array
-        if(i >= final_size){
+        if(i >= final_size || i >= size && i < final_size || i < 0){
             System.out.println("this index is out of bound");
+            throw new IndexOutOfBoundsException();
         }else{
 
-            if(i >= size){
-                arr[i] = t;
-                size++;
-            }else{
+//            if(i >= size){
+//                arr[i] = t;
+//                size++;
+//            }
+//            if(i < size && i >= 0) {
+//            if(size == final_size){
+//                arr[i] = t;
+//                size++;
+//            }else
+
                 array_resize();
                 System.arraycopy(arr,i,arr,i+1,size-i);
                 arr[i] = t;
                 size++;
-            }
         }
     }
 
     @Override
     public T remove(int i) {
 
-        if(i >= final_size || i < 0){
+        T x = null;
+        if(i >= final_size || i < 0 || i >= size){
             throw new IndexOutOfBoundsException("out of bound");
         }
         else {
-
+            x = (T) arr[i];
             System.arraycopy(arr,i+1,arr,i,size-i-1);
-            arr[size-1] = 0;
-            size -= 1;
+            arr[size-1] = null;
+            size = size - 1;
         }
-        return null;
+        return x;
     }
 
     @Override
@@ -506,6 +521,19 @@ public class CustomArrayList<T> implements List<T> {
             return null;
 
         }
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+
+        String customArrayList = "";
+        for(Object c : arr){
+            customArrayList = customArrayList + " " + c.toString();
+        }
+
+        return customArrayList;
+
     }
 
     public static void main(String[] args){
