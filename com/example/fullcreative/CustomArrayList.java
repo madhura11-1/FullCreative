@@ -523,18 +523,18 @@ public class CustomArrayList<T> implements List<T> {
         }
     }
 
-    @NonNull
-    @Override
-    public String toString() {
-
-        String customArrayList = "";
-        for(Object c : arr){
-            customArrayList = customArrayList + " " + c.toString();
-        }
-
-        return customArrayList;
-
-    }
+//    @NonNull
+//    @Override
+//    public String toString() {
+//
+//        String customArrayList = "";
+//        for(Object c : arr){
+//            customArrayList = customArrayList + " " + c.toString();
+//        }
+//
+//        return customArrayList;
+//
+//    }
 
     public static void main(String[] args){
 

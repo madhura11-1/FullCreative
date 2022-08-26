@@ -1,35 +1,32 @@
 package com.example.fullcreative;
-
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
 
 public class Contact extends People {
 
     static int contact_id;
+    String address,company;
+    String notes,website;
     String relationv;
-    HashMap<String, String> phoneNumber;
-    HashMap<String,String> email;
-    HashMap<Date,String> significantDate;
-    HashMap<String,String> relatedPersonNo;
+    CustomHashMap<String, String> phoneNumber;
+    CustomHashMap<String,String> email;
+    CustomHashMap<Date,String> significantDate;
+    CustomHashMap<String,String> relatedPersonNo;
     String saveTo;
     boolean favourite;
     boolean spam;
     boolean blocked;
-    ArrayList<Integer> linked_id;
-    public static ArrayList<Contact> contacts = new ArrayList<>();
+    CustomArrayList<Integer> linked_id;
+    public static CustomArrayList<Contact> contacts = new CustomArrayList<>();
 
     public Contact(){
 
         //initialization
         contact_id = contact_id + 1;
-        phoneNumber = new HashMap<>();
-        email = new HashMap<>();
-        significantDate = new HashMap<>();
-        relatedPersonNo = new HashMap<>();
-        linked_id = new ArrayList<>();
+        phoneNumber = new CustomHashMap<>();
+        email = new CustomHashMap<>();
+        significantDate = new CustomHashMap<>();
+        relatedPersonNo = new CustomHashMap<>();
+        linked_id = new CustomArrayList<>();
         favourite = false;
         spam = false;
         blocked = false;
@@ -41,7 +38,7 @@ public class Contact extends People {
         return contact_id;
     }
 
-    public static ArrayList<Contact> getContacts(){
+    public static CustomArrayList<Contact> getContacts(){
         return contacts;
     }
 
@@ -85,47 +82,52 @@ public class Contact extends People {
         this.lastName = lastName;
     }
 
-    public void setPhoneNumber(String phoneNumber,int type){
-
-        if(this.phoneNumber.isEmpty()) {
-            this.phoneNumber.put(phoneNumber, Enums.phoneNumber.getValue(type));
-        }else{
-            this.phoneNumber.clear();
-            this.phoneNumber.put(phoneNumber, Enums.phoneNumber.getValue(type));
-        }
-
+    public void setAddress(String address){
+        this.address = address;
     }
 
-    public HashMap<String,String> getPhoneNumber(){
+    public String getAddress(){
+        return address;
+    }
+
+    public void setCompany(String company){
+        this.company = company;
+    }
+
+    public String getCompany(){
+        return this.company;
+    }
+
+    public void setPhoneNumber(CustomHashMap<String,String> phoneNumber){
+        this.phoneNumber = phoneNumber;
+    }
+
+    public CustomHashMap<String,String> getPhoneNumber(){
         return this.phoneNumber;
     }
 
-    public void setEmail(String email, int type){
-
-        if(this.email.isEmpty()) {
-            this.email.put(email, Enums.email.getValue(type));
-        }else{
-            this.email.clear();
-            this.email.put(email, Enums.email.getValue(type));
-        }
+    public void setEmail(CustomHashMap<String,String> email){
+            this.email = email;
     }
 
-    public HashMap<String,String> getEmail(){
+    public CustomHashMap<String,String> getEmail(){
         return this.email;
     }
 
-    public void setSignificantDate(Date d, int type){
-
-        if(this.significantDate.isEmpty()) {
-            this.significantDate.put(d, Enums.date.getValue(type));
-        }else{
-            this.significantDate.clear();
-            this.significantDate.put(d, Enums.date.getValue(type));
-        }
+    public void setSignificantDate(CustomHashMap<Date,String> date){
+        this.significantDate = date;
     }
 
-    public HashMap<Date,String> getSignificantDate(){
+    public CustomHashMap<Date,String> getSignificantDate(){
         return this.significantDate;
+    }
+
+    public void setWebsite(String website){
+        this.website = website;
+    }
+
+    public String getWebsite(){
+        return this.website;
     }
 
     public void setRelatedPersonNo(String personNo, int type){
@@ -138,7 +140,7 @@ public class Contact extends People {
     }
     }
 
-    public HashMap<String,String> getRelatedPersonNo(){
+    public CustomHashMap<String,String> getRelatedPersonNo(){
         return this.relatedPersonNo;
     }
 
@@ -156,6 +158,14 @@ public class Contact extends People {
 
     public String getRelationv(){
         return relationv;
+    }
+
+    public void setNotes(String notes){
+        this.notes = notes;
+    }
+
+    public String getNotes(){
+        return this.notes;
     }
 
     public void markFavourite(){
@@ -188,13 +198,11 @@ public class Contact extends People {
         this.spam = false;
     }
 
-
-
     public void setLinked_id(int id){
         linked_id.add(id);
     }
 
-    public ArrayList<Integer> getLinked_ids(){
+    public CustomArrayList<Integer> getLinked_ids(){
         return linked_id;
     }
 

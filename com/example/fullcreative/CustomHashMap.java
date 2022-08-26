@@ -233,7 +233,7 @@ public class CustomHashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Se
             if(entry.getKey().equals(key)){
 
                 if(entry.next() == null){
-                    System.out.println("In the vertical block");
+                    //System.out.println("In the vertical block");
                     value = entry.getValue();
                     table[this.index(this.hash(entry.getKey()))] = null;
                 }
@@ -241,13 +241,13 @@ public class CustomHashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Se
                     //Entry<K,V> next = entry.next();
                     if(pre != null){
 
-                        System.out.println("In the block somwhere middle in horizontal");
+                       // System.out.println("In the block somwhere middle in horizontal");
                         pre.next = entry.next();
                         value = entry.getValue();
                         table[this.index(this.hash(entry.getKey()))] = null;
 
                     }else{
-                        System.out.println("In the block at start of horizontal");
+                        //System.out.println("In the block at start of horizontal");
                         table[index] = entry.next();
                         value = entry.getValue();
                         table[this.index(this.hash(entry.getKey()))] = null;
@@ -299,6 +299,21 @@ public class CustomHashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Se
         }
         return hashmap;
 
+    }
+
+    public String get(){
+
+        String string = "";
+        for(int i =0;i<table.length;i++) {
+            Entry<K, V> entry = table[i];
+            if (entry != null) {
+                do {
+                    string = string + (entry.getKey().toString() + " - " + entry.getValue().toString()) + "\n";
+                } while (entry.next() != null);
+
+            }
+        }
+        return string;
     }
 
     @NonNull
